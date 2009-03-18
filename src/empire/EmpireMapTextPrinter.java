@@ -1,0 +1,60 @@
+package empire;
+
+import java.awt.Dimension;
+import java.awt.Point;
+
+import empire.buildings.Building;
+
+public class EmpireMapTextPrinter {
+	
+	private static final String EMPTY_VISIBLE_MAP_POINT = ".";
+	private static final String EMPTY_NOT_VISIBLE_MAP_POINT = "-";
+	
+	private final EmpireMap map;
+
+	public EmpireMapTextPrinter(final EmpireMap map) {
+		this.map = map;
+	}
+
+	private Dimension getOriginOffset(){
+		final int x = map.calculateUpperLeft().x;
+		final int y = map.calculateUpperLeft().y;		
+		return new Dimension(x, y);
+	}
+	
+	public String print() {
+		final StringBuilder mapPrint = new StringBuilder();
+				
+		boolean firstline = true;
+		
+		for(int y = 0; y < map.mapDimension().height; y++){
+			
+			if (!firstline){
+				mapPrint.append("\n");
+			}
+			
+			firstline = false;
+			
+			for(int x = 0; x < map.mapDimension().width; x++){
+				final Point pointOnMap = new Point(x,y);
+				pointOnMap.translate(getOriginOffset().width, getOriginOffset().height);
+				mapPrint.append(getCharFor(pointOnMap));
+			}
+		}			
+		
+		return mapPrint.toString();
+	}
+
+	private String getCharFor(final Point pointOnMap) {
+		
+		final Building buildingInPointIfAnyOrNull = map.getBuildingInPointIfAnyOrNull(pointOnMap);
+		if (buildingInPointIfAnyOrNull != null)
+				return buildingInPointIfAnyOrNull.getName().substring(0,1).toUpperCase();
+		
+		if(map.isPointInSight(pointOnMap))
+			return EMPTY_VISIBLE_MAP_POINT;
+		
+		return EMPTY_NOT_VISIBLE_MAP_POINT;
+	}	
+	
+}
