@@ -3,6 +3,8 @@ package empire;
 import java.awt.Dimension;
 import java.awt.Point;
 
+import commons.TextUtils;
+
 import empire.buildings.Building;
 
 public class EmpireMapTextPrinter {
@@ -55,6 +57,10 @@ public class EmpireMapTextPrinter {
 			return EMPTY_VISIBLE_MAP_POINT;
 		
 		return EMPTY_NOT_VISIBLE_MAP_POINT;
+	}
+
+	public static String printMapWithCoords(final EmpireMap map2) {
+		return TextUtils.withCoordsStartingPoint(new EmpireMapTextPrinter(map2).print(), map2.getAbsoluteCenterPoint());
 	}	
 	
 }

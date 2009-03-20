@@ -20,7 +20,7 @@ public class BuildingsManagementTest {
 	@Before
 	public void setup(){
 		builder = new Builder();
-		map = new EmpireMap(builder.createCastle());
+		map = new EmpireMap();
 	}
 	
 	@Test
@@ -46,6 +46,12 @@ public class BuildingsManagementTest {
 		} catch (final OccupiedPointException ope){
 			//success
 		}
+	}
+	
+	@Test
+	public void testReturnAbsoluteCenterPoint(){
+		final Point centerPoint = map.getAbsoluteCenterPoint();
+		Assert.assertEquals(new Point(10,10), centerPoint);
 	}
 
 	private String printMap(final EmpireMap map) {

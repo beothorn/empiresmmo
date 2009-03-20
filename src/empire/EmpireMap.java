@@ -9,15 +9,16 @@ import java.util.Set;
 import java.util.Map.Entry;
 
 import empire.buildings.Building;
+import empire.buildings.Castle;
 
 public class EmpireMap {
 
 	
 	private final Map<Point, Building> buildings = new LinkedHashMap<Point, Building>();
 	
-	public EmpireMap(final Building castle) {
+	public EmpireMap() {
 		try {
-			addBuilding(castle, new Point(0,0));
+			addBuilding(new Castle(), new Point(0,0));
 		} catch (final OccupiedPointException e) {
 			throw new RuntimeException("Must never throw", e);
 		}
@@ -119,4 +120,15 @@ public class EmpireMap {
 		}
 		return false;
 	}
+
+	public Point getAbsoluteCenterPoint() {
+		final Point upperLeft = calculateUpperLeft();
+		return new Point(Math.abs(upperLeft.x),Math.abs(upperLeft.y));
+	}
+	
+	@Override
+	public String toString() {
+		return EmpireMapTextPrinter.printMapWithCoords(this);
+	}
+	
 }

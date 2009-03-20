@@ -35,8 +35,13 @@ public class GameCommandLine {
 			} catch (final NumberFormatException e) {
 				throw new UnhandledException(e);
 			} catch (final OccupiedPointException e) {
-				throw new UnhandledException(e);
+				System.out.println("The point " + x + ", " + y + " is occupied already");
 			}
+			return;
+		}
+		
+		if (commandName.equals("print")){
+			System.out.println(EmpireMapTextPrinter.printMapWithCoords(map));
 			return;
 		}
 		

@@ -9,7 +9,7 @@ public class Builder {
 	private final Set<Building> buildings = new LinkedHashSet<Building>();
 
 	public Builder(){
-		buildings.add(new Building("castle", new Dimension(5,5), 10));
+		buildings.add(new Castle());
 		buildings.add(new Building("mine", new Dimension(1,1), 1));
 	}
 

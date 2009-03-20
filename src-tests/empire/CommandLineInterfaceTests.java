@@ -18,7 +18,7 @@ public class CommandLineInterfaceTests {
 	public void setup(){
 		
 		builder = new Builder();
-		map = new EmpireMap(builder.createCastle());
+		map = new EmpireMap();
 	}
 	
 	@Test
