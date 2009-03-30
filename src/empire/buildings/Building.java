@@ -4,12 +4,12 @@ import java.awt.Dimension;
 
 public class Building {
 
-	private final String buildingName;
+	private final String buildingType;
 	private final int sight;
 	private final Dimension dimension;
 
-	Building(final String buildingName, final Dimension dimension, final int sight) {
-		this.buildingName = buildingName;
+	Building(final String buildingType, final Dimension dimension, final int sight) {
+		this.buildingType = buildingType;
 		this.dimension = dimension;
 		this.sight = sight;
 	}
@@ -31,7 +31,7 @@ public class Building {
 	}
 
 	public String getName() {
-		return buildingName;
+		return buildingType;
 	}
 
 	public Dimension getSightSize() {

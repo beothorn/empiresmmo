@@ -10,7 +10,8 @@ import empire.buildings.Builder;
 
 public class Main {
 
-	
+	//todo escrever testes dos comandos
+	//todo Comandos devem virar classes
 	public static void main(final String[] args) throws IOException {
 		final Builder builder = new Builder();
 		final EmpireMap map = new EmpireMap();

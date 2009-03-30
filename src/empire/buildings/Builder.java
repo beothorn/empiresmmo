@@ -34,5 +34,14 @@ public class Builder {
 	public Building createBuilding(final String buildingName) {
 		return buildingByName(buildingName);
 	}
+
+	public boolean isBuildingType(final String buildingType) {
+		for (final Building b : buildings)
+			if (b.getName().equals(buildingType))
+				return true;
+		
+		return false;
+		
+	}
 	
 }
