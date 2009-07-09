@@ -11,14 +11,17 @@ public class GameCommandLine {
 
 	private final EmpireMap map;
 	private final Builder builder;
+	private Output output;
 
-	public GameCommandLine(final EmpireMap map, final Builder builder) {
+	public GameCommandLine(final EmpireMap map, final Builder builder, Output output) {
 		this.map = map;
 		this.builder = builder;
+		this.output = output;
+		command("print");
 	}
 
 	public void command(final String command) {
-		System.out.println(processCommand(command));
+		output.writeLine(processCommand(command));
 	}
 
 	private String processCommand(final String command) {
@@ -44,10 +47,11 @@ public class GameCommandLine {
 				throw new UnhandledException(e);
 			} catch (final OccupiedPointException e) {
 				return "The point " + x + ", " + y + " is occupied already";
+			} catch (PointNotInSightException e) {
+				return "The point " + x + ", " + y + " is not visible";
 			}
 			
-			return "Building " + buildingType + " added in " + x + " " + y;
-			
+			return "Building " + buildingType + " added in " + x + " " + y+"\n"+EmpireMapTextPrinter.printMapWithCoords(map);
 		}else if (commandName.equals("print")){
 			return  EmpireMapTextPrinter.printMapWithCoords(map);
 		}

@@ -23,7 +23,13 @@ public class CommandLineInterfaceTests {
 	
 	@Test
 	public void addBuilding(){
-		final GameCommandLine commandLine = new GameCommandLine(map, builder);
+		final GameCommandLine commandLine = new GameCommandLine(map, builder, new Output() {
+			
+			@Override
+			public void writeLine(String message) {
+				//ignore it
+			}
+		});
 		final Point minePoint = new Point(-8,-8);
 		commandLine.command("add mine "+minePoint.x+" "+minePoint.y);
 		final Building buildingInPointIfAnyOrNull = map.getBuildingInPointIfAnyOrNull(minePoint);

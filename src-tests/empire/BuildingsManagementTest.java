@@ -31,19 +31,28 @@ public class BuildingsManagementTest {
 	}
 
 	@Test
-	public void testMapStartsWithACastleAndMine() throws IOException, OccupiedPointException{
+	public void testMapStartsWithACastleAndMine() throws IOException, OccupiedPointException, PointNotInSightException{
 		map.addBuilding(builder.createMine(), new Point(14,14));
 		final String mapWithACastleAndMine = resourceAsString(BuildingsManagementTest.class, "mapWithACastleAndMine.txt");
 		Assert.assertEquals(mapWithACastleAndMine, printMap(map));
 	}
 	
 	@Test
-	public void testAddBuildingInOccupiedPoint() throws IOException{
-
+	public void testAddBuildingInOccupiedPoint() throws PointNotInSightException{
 		try{
 			map.addBuilding(builder.createMine(), new Point(0,0));
 			throw new IllegalStateException("Must throw OccupiedPointException");
 		} catch (final OccupiedPointException ope){
+			//success
+		}
+	}
+	
+	@Test
+	public void testAddBuildingInANotInSightPosition() throws OccupiedPointException{
+		try{
+			map.addBuilding(builder.createMine(), new Point(42,42));
+			throw new IllegalStateException("Must throw OccupiedPointException");
+		} catch (final PointNotInSightException ope){
 			//success
 		}
 	}

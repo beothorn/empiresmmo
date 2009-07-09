@@ -1,6 +1,7 @@
 package empire;
 
-public class OccupiedPointException extends Exception {
+public class PointNotInSightException extends Exception {
+
 	private static final long serialVersionUID = 1L;
 
 }
