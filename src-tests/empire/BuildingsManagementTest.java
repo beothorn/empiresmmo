@@ -40,13 +40,33 @@ public class BuildingsManagementTest {
 	}
 	
 	@Test
+	public void testRemoveBuilding() throws OccupiedPointException, PointNotInSightException, IOException, EmptyPointException{
+		final Point point = new Point(14,14);
+		map.addBuilding(builder.createMine(), point);
+		map.removeBuilding(point);
+		final String mapWithACastle = resourceAsString(BuildingsManagementTest.class, "mapWithACastle.txt");
+		Assert.assertEquals(mapWithACastle, printMap(map));
+	}
+	
+	@Test
+	public void testTryToRemoveUnexistingBuilding(){
+		final Point point = new Point(14,14);
+		try {
+			map.removeBuilding(point);
+		} catch (final EmptyPointException e) {
+			return;
+		}
+		throw new IllegalStateException("Must throw EmptyPointException");
+	}
+	
+	@Test
 	public void testAddBuildingInOccupiedPoint() throws PointNotInSightException{
 		try{
 			map.addBuilding(builder.createMine(), new Point(0,0));
-			throw new IllegalStateException("Must throw OccupiedPointException");
 		} catch (final OccupiedPointException ope){
-			//success
+			return;
 		}
+		throw new IllegalStateException("Must throw OccupiedPointException");
 	}
 	
 	@Test
