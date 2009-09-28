@@ -1,6 +1,7 @@
 package empire.buildings;
 
 import java.awt.Dimension;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -42,6 +43,10 @@ public class Builder {
 		
 		return false;
 		
+	}
+
+	public Set<Building> getBuildings() {
+		return Collections.unmodifiableSet(buildings);
 	}
 	
 }

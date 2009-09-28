@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import commandLine.EmpireMapTextPrinter;
+
 import empire.buildings.Building;
 import empire.buildings.Castle;
 

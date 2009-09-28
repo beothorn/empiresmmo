@@ -1,10 +1,11 @@
-package empire;
+package commandLine;
 
 import java.awt.Dimension;
 import java.awt.Point;
 
 import commons.TextUtils;
 
+import empire.EmpireMap;
 import empire.buildings.Building;
 
 public class EmpireMapTextPrinter {

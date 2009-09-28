@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import commandLine.GameCommandLine;
+
 import empire.buildings.Builder;
 import empire.buildings.Building;
 

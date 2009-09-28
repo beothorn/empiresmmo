@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import commandLine.GameCommandLine;
+
 import empire.EmpireMap;
-import empire.GameCommandLine;
 import empire.Output;
 import empire.buildings.Builder;
 

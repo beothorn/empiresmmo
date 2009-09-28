@@ -1,9 +1,13 @@
-package empire;
+package commandLine;
 
 import java.awt.Point;
 
 import org.apache.commons.lang.UnhandledException;
 
+import empire.EmpireMap;
+import empire.OccupiedPointException;
+import empire.Output;
+import empire.PointNotInSightException;
 import empire.buildings.Builder;
 
 
@@ -11,9 +15,9 @@ public class GameCommandLine {
 
 	private final EmpireMap map;
 	private final Builder builder;
-	private Output output;
+	private final Output output;
 
-	public GameCommandLine(final EmpireMap map, final Builder builder, Output output) {
+	public GameCommandLine(final EmpireMap map, final Builder builder, final Output output) {
 		this.map = map;
 		this.builder = builder;
 		this.output = output;
@@ -31,14 +35,14 @@ public class GameCommandLine {
 		if (commandName.equals("add")){
 			
 			if (commandArgs.length < 4)
-				return ("Invalid number of args < 4");
+				return ("Invalid number of args: add buildingName x y");
 			
 			final String buildingType = commandArgs[1];
 			final String x = commandArgs[2];
 			final String y = commandArgs[3];
 			
 			if (!builder.isBuildingType(buildingType)){
-				return "Unknown building type " + buildingType;
+				return "Unknown building type " + buildingType + " Buildings: " + BuildingTypesPrinter.printBuildingsList(builder);
 			}
 			
 			try {
@@ -47,7 +51,7 @@ public class GameCommandLine {
 				throw new UnhandledException(e);
 			} catch (final OccupiedPointException e) {
 				return "The point " + x + ", " + y + " is occupied already";
-			} catch (PointNotInSightException e) {
+			} catch (final PointNotInSightException e) {
 				return "The point " + x + ", " + y + " is not visible";
 			}
 			
@@ -56,7 +60,7 @@ public class GameCommandLine {
 			return  EmpireMapTextPrinter.printMapWithCoords(map);
 		}
 		
-		return "Command " + commandName + " is not valid.";
+		return "Command " + commandName + " is not valid. Commands: add, print";
 	}
 
 }
