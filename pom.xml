@@ -1,14 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
 	<groupId>games</groupId>
 	<artifactId>empiresmmo</artifactId>
-	<version>1.0</version>
+	<version>1.0-SNAPSHOT</version>
 	<scm>
-		<connection>scm:svn:scm:svn:https://empiresmmo.googlecode.com/svn/tags/empiresmmo-1.0</connection>
-		<developerConnection>scm:svn:scm:svn:https://empiresmmo.googlecode.com/svn/tags/empiresmmo-1.0</developerConnection>
+		<connection>scm:svn:https://empiresmmo.googlecode.com/svn/trunk</connection>
+		<developerConnection>scm:svn:https://empiresmmo.googlecode.com/svn/trunk</developerConnection>
 		<tag>scm:svn:https://empiresmmo.googlecode.com/svn/tags</tag>
-		<url>scm:svn:scm:svn:https://empiresmmo.googlecode.com/svn/tags/empiresmmo-1.0</url>
+		<url>https://empiresmmo.googlecode.com/svn</url>
 	</scm>
   
 	<build>
