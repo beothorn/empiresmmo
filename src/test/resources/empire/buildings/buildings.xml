@@ -1,0 +1,18 @@
+<buildings>
+  <building>
+    <buildingType>castle</buildingType>
+    <sight>1</sight>
+    <dimension>
+      <width>1</width>
+      <height>1</height>
+    </dimension>
+  </building>
+  <building>
+    <buildingType>mine</buildingType>
+    <sight>1</sight>
+    <dimension>
+      <width>1</width>
+      <height>1</height>
+    </dimension>
+  </building>
+</buildings>

@@ -37,4 +37,9 @@ public class Building {
 	public Dimension getSightSize() {
 		return new Dimension((int)(getSight()*2+getWidth()),(int)(getSight()*2+getHeight()));
 	}
+	
+	@Override
+	public String toString() {
+		return "Building: "+buildingType;
+	}
 }
