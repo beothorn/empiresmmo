@@ -7,11 +7,11 @@ import java.util.Set;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
-public class LoadBuildingsFromXmlTests {
+public class LoadBuildingsFromXmlTest {
 
 	@Test
 	public void loadCastle() throws IOException{
-		final InputStream resourceAsStream = LoadBuildingsFromXmlTests.class.getResourceAsStream("buildings.xml");
+		final InputStream resourceAsStream = LoadBuildingsFromXmlTest.class.getResourceAsStream("buildings.xml");
 		final String buildingsXML = IOUtils.toString(resourceAsStream, "UTF-8");
 		final Set<Building> buildings = new BuildingsLoader(buildingsXML).getBuildings();
 		for (final Building building : buildings) {

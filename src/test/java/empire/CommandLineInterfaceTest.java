@@ -11,7 +11,7 @@ import commandLine.GameCommandLine;
 import empire.buildings.Builder;
 import empire.buildings.Building;
 
-public class CommandLineInterfaceTests {
+public class CommandLineInterfaceTest {
 	
 	private EmpireMap map;
 	private Builder builder;
@@ -28,7 +28,7 @@ public class CommandLineInterfaceTests {
 		final GameCommandLine commandLine = new GameCommandLine(map, builder, new Output() {
 			
 			@Override
-			public void writeLine(String message) {
+			public void writeLine(final String message) {
 				//ignore it
 			}
 		});
