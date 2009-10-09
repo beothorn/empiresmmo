@@ -24,7 +24,7 @@ public class CommandLineInterfaceTest {
 	}
 	
 	@Test
-	public void addBuilding(){
+	public void testAddBuilding(){
 		final GameCommandLine commandLine = new GameCommandLine(map, builder, new Output() {
 			
 			@Override

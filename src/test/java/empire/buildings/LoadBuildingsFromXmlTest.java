@@ -10,7 +10,7 @@ import org.junit.Test;
 public class LoadBuildingsFromXmlTest {
 
 	@Test
-	public void loadCastle() throws IOException{
+	public void testLoadCastle() throws IOException{
 		final InputStream resourceAsStream = LoadBuildingsFromXmlTest.class.getResourceAsStream("buildings.xml");
 		final String buildingsXML = IOUtils.toString(resourceAsStream, "UTF-8");
 		final Set<Building> buildings = new BuildingsLoader(buildingsXML).getBuildings();
