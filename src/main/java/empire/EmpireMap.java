@@ -73,7 +73,7 @@ public class EmpireMap {
 
 	public void addBuilding(final Building building, final Point point)
 			throws OccupiedPointException, PointNotInSightException {
-		if (pointIsOccupied(point))//TODO: create valid addBuilding
+		if (pointIsOccupied(point,building))//TODO: create valid addBuilding
 			throw new OccupiedPointException();
 		if (!isPointInSight(point))
 			throw new PointNotInSightException();
@@ -81,7 +81,7 @@ public class EmpireMap {
 		internalAddBuilding(building, point);
 	}
 
-	private boolean pointIsOccupied(final Point point) {
+	private boolean pointIsOccupied(final Point point, final Building buildingOrNull ) {
 		return getBuildingInPointIfAnyOrNull(point) != null;
 	}
 
@@ -90,6 +90,10 @@ public class EmpireMap {
 			throw new EmptyPointException();
 		
 		buildings.remove(point);
+	}
+
+	private boolean pointIsOccupied(final Point point) {
+		return pointIsOccupied(point, null);
 	}
 
 	private void internalAddBuilding(final Building building,

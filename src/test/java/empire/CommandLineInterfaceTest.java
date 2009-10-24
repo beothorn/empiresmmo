@@ -41,4 +41,34 @@ public class CommandLineInterfaceTest {
 		
 		Assert.assertTrue(buildingInPointIfAnyOrNull.getName().equals("mine"));
 	}
+	
+	@Test
+	public void testAddTwoCastles(){
+		final GameCommandLine commandLine = new GameCommandLine(map, builder, new Output() {
+			@Override
+			public void writeLine(final String message) {
+				//ignore it
+			}
+		});
+		
+		final Point firstCastlePoint = new Point(5, 3);
+		final Building buildingAtFirstCastlePoint = addCastle(commandLine, firstCastlePoint);
+		if (buildingAtFirstCastlePoint == null)
+			throw new IllegalStateException("Building at point must not be null");
+		Assert.assertTrue(buildingAtFirstCastlePoint.getName().equals("castle"));
+		
+		final Point secondCastlePoint = new Point(3, 5);
+		final Building buildingAtSecondCastlePoint = addCastle(commandLine, secondCastlePoint);
+		if (buildingAtSecondCastlePoint != null)
+			throw new IllegalStateException("Castle should not be added here.");
+		
+		
+		
+	}
+
+	private Building addCastle(final GameCommandLine commandLine, final Point castlePoint) {
+		commandLine.command("add castle "+castlePoint.x+" "+castlePoint.y);
+		final Building buildingInPointIfAnyOrNull = map.getBuildingInPointIfAnyOrNull(castlePoint);
+		return buildingInPointIfAnyOrNull;
+	}
 }
