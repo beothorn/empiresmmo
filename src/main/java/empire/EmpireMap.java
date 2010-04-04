@@ -75,10 +75,23 @@ public class EmpireMap {
 			throws OccupiedPointException, PointNotInSightException {
 		if (pointIsOccupied(point,building))//TODO: create valid addBuilding
 			throw new OccupiedPointException();
+		if(intersectsOtherBuilding(point,building))
+			throw new OccupiedPointException();
 		if (!isPointInSight(point))
 			throw new PointNotInSightException();
 
 		internalAddBuilding(building, point);
+	}
+
+	private boolean intersectsOtherBuilding(final Point point,final Building building) {
+		final Set<Entry<Point, Building>> entrySet = buildings.entrySet();
+		final Rectangle buildingToCompare = new Rectangle(point,building.getDimension()) ;
+		for (Entry<Point, Building> entry : entrySet) {
+			final Rectangle buildingArea = new Rectangle(entry.getKey(),entry.getValue().getDimension()) ;
+			if(buildingToCompare.intersects(buildingArea))
+				return true;
+		}
+		return false;
 	}
 
 	private boolean pointIsOccupied(final Point point, final Building buildingOrNull ) {
