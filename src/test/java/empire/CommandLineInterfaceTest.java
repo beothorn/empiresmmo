@@ -25,13 +25,7 @@ public class CommandLineInterfaceTest {
 	
 	@Test
 	public void testAddBuilding(){
-		final GameCommandLine commandLine = new GameCommandLine(map, builder, new Output() {
-			
-			@Override
-			public void writeLine(final String message) {
-				//ignore it
-			}
-		});
+		final GameCommandLine commandLine = new GameCommandLine(map, builder, devNullOutput());
 		final Point minePoint = new Point(-8,-8);
 		commandLine.command("add mine "+minePoint.x+" "+minePoint.y);
 		final Building buildingInPointIfAnyOrNull = map.getBuildingInPointIfAnyOrNull(minePoint);
@@ -41,15 +35,10 @@ public class CommandLineInterfaceTest {
 		
 		Assert.assertTrue(buildingInPointIfAnyOrNull.getName().equals("mine"));
 	}
-	
+
 	@Test
 	public void testTryToAddCastleIntersecting(){
-		final GameCommandLine commandLine = new GameCommandLine(map, builder, new Output() {
-			@Override
-			public void writeLine(final String message) {
-				//ignore it
-			}
-		});
+		final GameCommandLine commandLine = new GameCommandLine(map, builder, devNullOutput());
 		
 		final Point firstCastlePoint = new Point(5, 3);
 		if (!addCastleAnReturnIfAdded(commandLine, firstCastlePoint))
@@ -61,6 +50,16 @@ public class CommandLineInterfaceTest {
 			throw new IllegalStateException("Castle intersecting another should not be allowed.");
 	}
 
+	private Output devNullOutput() {
+		return new Output() {
+			
+			@Override
+			public void writeLine(final String message) {
+				//ignore it
+			}
+		};
+	}
+	
 	private Object nameOfBuildingAt(Point point) {
 		final Building building = map.getBuildingInPointIfAnyOrNull(point);
 		if(building == null)

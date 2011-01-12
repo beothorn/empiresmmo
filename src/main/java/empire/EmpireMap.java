@@ -30,35 +30,13 @@ public class EmpireMap {
 				(int) (bottomRight.getY() - upperLeft.getY()));
 	}
 
-	private Point calculateBottomRight() {
-		final Point bottomRight = new Point();
-		for (final Map.Entry<Point, Building> entry : buildings.entrySet()) {
-			final Building building = entry.getValue();
-			final Point point = entry.getKey();
-			final int sight = building.getSight();
-
-			final int buildingBottomRightX = (int) (point.x
-					+ building.getWidth() + sight);
-			final int buildingBottomRightY = (int) (point.y
-					+ building.getHeight() + sight);
-			final Point buildingBottomRight = new Point(buildingBottomRightX,
-					buildingBottomRightY);
-			if (buildingBottomRight.x > bottomRight.x)
-				bottomRight.x = buildingBottomRight.x;
-			if (buildingBottomRight.y > bottomRight.y)
-				bottomRight.y = buildingBottomRight.y;
-
-		}
-		return bottomRight;
-	}
-
 	public Point calculateUpperLeft() {
 		final Point upperLeft = new Point();
 		for (final Map.Entry<Point, Building> entry : buildings.entrySet()) {
 			final Building building = entry.getValue();
 			final Point point = entry.getKey();
 			final int sight = building.getSight();
-
+	
 			final int buildingUpperLeftX = point.x - sight;
 			final int buildingUpperLeftY = point.y - sight;
 			final Point upperLeftPoint = new Point(buildingUpperLeftX,
@@ -79,8 +57,37 @@ public class EmpireMap {
 			throw new OccupiedPointException();
 		if (!isPointInSight(point))
 			throw new PointNotInSightException();
-
+	
 		internalAddBuilding(building, point);
+	}
+	
+	public Dimension getOriginOffset(){
+		Point upperLeft = calculateUpperLeft();
+		final int x = upperLeft.x;
+		final int y = upperLeft.y;		
+		return new Dimension(x, y);
+	}
+
+	private Point calculateBottomRight() {
+		final Point bottomRight = new Point();
+		for (final Map.Entry<Point, Building> entry : buildings.entrySet()) {
+			final Building building = entry.getValue();
+			final Point point = entry.getKey();
+			final int sight = building.getSight();
+
+			final int buildingBottomRightX = (int) (point.x
+					+ building.getWidth() + sight);
+			final int buildingBottomRightY = (int) (point.y
+					+ building.getHeight() + sight);
+			final Point buildingBottomRight = new Point(buildingBottomRightX,
+					buildingBottomRightY);
+			if (buildingBottomRight.x > bottomRight.x)
+				bottomRight.x = buildingBottomRight.x;
+			if (buildingBottomRight.y > bottomRight.y)
+				bottomRight.y = buildingBottomRight.y;
+
+		}
+		return bottomRight;
 	}
 
 	private boolean intersectsOtherBuilding(final Point point,final Building building) {

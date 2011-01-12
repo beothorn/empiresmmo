@@ -19,11 +19,7 @@ public class EmpireMapTextPrinter {
 		this.map = map;
 	}
 
-	private Dimension getOriginOffset(){
-		final int x = map.calculateUpperLeft().x;
-		final int y = map.calculateUpperLeft().y;		
-		return new Dimension(x, y);
-	}
+	
 	
 	public String print() {
 		final StringBuilder mapPrint = new StringBuilder();
@@ -40,7 +36,7 @@ public class EmpireMapTextPrinter {
 			
 			for(int x = 0; x < map.mapDimension().width; x++){
 				final Point pointOnMap = new Point(x,y);
-				pointOnMap.translate(getOriginOffset().width, getOriginOffset().height);
+				pointOnMap.translate(map.getOriginOffset().width, map.getOriginOffset().height);
 				mapPrint.append(getCharFor(pointOnMap));
 			}
 		}			
